@@ -1,0 +1,14 @@
+Các ràng buộc thông dụng cho SQL
+- Not null: không cho phép giá trị null;
+- Unique: mỗi giá trị là duy nhất
+- primary key: khoá chính ( không null và là unique), mỗi bảng chỉ có 1 khoá chính
+	- Có 2 cách khai báo
+	- Khoái chính 
+- foreign key: khoái ngoại ( tham chiếu sang bảng khác)
+- check: kiểm tra dựa vào 1 điều kiện
+- default: quy định giá trị mặc định cho trường( nếu không có giá trị nào được nhập vào)
+- index: gia tăng tốc độ truy vấn dữ liệu
+
+Các kiểu dữ liệu trong SQL
+- Char		- Varchar	- Text		- Longtext	- Int		- Bigin
+- Float		- Double	- Data		- Datatime	- Timestamp	- Time
