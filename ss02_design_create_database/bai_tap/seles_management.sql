@@ -14,7 +14,7 @@ create table product(
     check(p_price > 0)
 );
 create table order_cus(
-	o_id int not null primary key unique,
+	o_id int not null primary key unique,   
     c_id int not null,
     o_date datetime not null,
     o_total_price long not null,

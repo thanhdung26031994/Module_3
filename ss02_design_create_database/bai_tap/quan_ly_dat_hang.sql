@@ -3,11 +3,11 @@ create database if not exists quan_ly_dat_hang;
 use quan_ly_dat_hang;
 
 create table phieu_xuat(
-	so_px int not null primary key auto_increment unique,
+	so_px int not null primary key auto_increment,
     ngay_xuat datetime not null
 );
 create table vat_tu(
-	ma_vtu varchar(10) not null primary key unique,
+	ma_vtu varchar(10) not null primary key,
     ten_vtu varchar(60) not null
 );
 create table phieu_nhap(
