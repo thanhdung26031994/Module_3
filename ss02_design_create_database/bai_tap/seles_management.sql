@@ -25,6 +25,7 @@ create table order_detail(
     p_id varchar(10) not null,
     od_qty int not null,
     check(od_qty > 0),
+    primary key(o_id, p_id),
     foreign key(o_id) references order_cus(o_id),
     foreign key(p_id) references product(p_id)
 );
