@@ -56,26 +56,39 @@ value (1, 1, 3),
 (2, 3, 3);
 
 -- Hiển thị các thông tin  gồm oID, oDate, oPrice của tất cả các hóa đơn trong bảng Order
-select o_id, o_date, o_total_price
-from order_cus oc;
+SELECT 
+    o_id, o_date, o_total_price
+FROM
+    order_cus oc;
 
 -- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
-select group_concat(distinct c.c_name) as khach_hang, group_concat(distinct pd.p_name) as san_pham
-from (order_cus as ocs
-join customer as c on ocs.c_id = c.c_id
-join order_detail as odt on odt.o_id = ocs.o_id
-join product as pd on pd.p_id = odt.p_id);
+SELECT 
+    GROUP_CONCAT(DISTINCT c.c_name) AS khach_hang,
+    GROUP_CONCAT(DISTINCT pd.p_name) AS san_pham
+FROM
+    (order_cus AS ocs
+    JOIN customer AS c ON ocs.c_id = c.c_id
+    JOIN order_detail AS odt ON odt.o_id = ocs.o_id
+    JOIN product AS pd ON pd.p_id = odt.p_id);
 
 
 -- Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
-select cus.c_name
-from customer as cus 
-left join order_cus as ocu on cus.c_id = ocu.c_id
-where ocu.c_id is null;
+SELECT 
+    cus.c_name
+FROM
+    customer AS cus
+        LEFT JOIN
+    order_cus AS ocu ON cus.c_id = ocu.c_id
+WHERE
+    ocu.c_id IS NULL;
 
 -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn
-SELECT ocu.o_id, ocu.o_date, SUM(p.p_price * odt.od_qty) AS gia_tien
-FROM (order_cus AS ocu
-JOIN order_detail AS odt ON odt.o_id = ocu.o_id
-JOIN product AS p ON p.p_id = odt.p_id)
+SELECT 
+    ocu.o_id,
+    ocu.o_date,
+    SUM(p.p_price * odt.od_qty) AS gia_tien
+FROM
+    (order_cus AS ocu
+    JOIN order_detail AS odt ON odt.o_id = ocu.o_id
+    JOIN product AS p ON p.p_id = odt.p_id)
 GROUP BY ocu.o_id;

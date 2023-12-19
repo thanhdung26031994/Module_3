@@ -3,35 +3,35 @@ create database if not exists student_management;
 use student_management;
 
 create table student_class(
-	class_id int not null primary key auto_increment,
-    class_name varchar(60) not null,
-    start_date datetime not null,
-    statuses bit
+class_id int not null primary key auto_increment,
+class_name varchar(60) not null,
+start_date datetime not null,
+statuses bit
 );
 create table student(
-	student_id int not null primary key,
-    student_name varchar(30) not null,
-    address varchar(50),
-    phone varchar(20),
-    statuses bit,
-    class_id int not null,
-    foreign key(class_id) references student_class(class_id)
+student_id int not null primary key,
+student_name varchar(30) not null,
+address varchar(50),
+phone varchar(20),
+statuses bit,
+class_id int not null,
+foreign key(class_id) references student_class(class_id)
 );
 create table subjects(
-	sub_id int not null primary key auto_increment,
-    sub_name varchar(30) not null,
-    credit tinyint not null default 1 check(credit >= 1),
-    statuses bit default 1
+sub_id int not null primary key auto_increment,
+sub_name varchar(30) not null,
+credit tinyint not null default 1 check(credit >= 1),
+statuses bit default 1
 );
 create table mark(
-	mark_id int not null primary key auto_increment,
-    sub_id int not null,
-    student_id int not null,
-    unique(sub_id, student_id),
-    mark float default 0,
-    check(mark between 0 and 100),
-    foreign key(sub_id) references subjects(sub_id),
-    foreign key(student_id) references student(student_id)
+mark_id int not null primary key auto_increment,
+sub_id int not null,
+student_id int not null,
+unique(sub_id, student_id),
+mark float default 0,
+check(mark between 0 and 100),
+foreign key(sub_id) references subjects(sub_id),
+foreign key(student_id) references student(student_id)
 );
 insert into student_class
 value (1, 'A1', '2008-12-20', 1),
@@ -73,8 +73,17 @@ update student
 set class_id = 1 where student_id = 5;
 
 -- Hiển thị các thông tin: StudentName, SubName, Mark. Dữ liệu sắp xếp theo điểm thi (mark) giảm dần. nếu trùng sắp theo tên tăng dần.
-select std.student_id, sub.sub_id, m.mark 
-from (mark m
-	join student std on m.student_id = std.student_id
-    join subjects sub on sub.sub_id = m.sub_id)
-order by mark desc, student_name asc;
+SELECT 
+    std.student_id, sub.sub_id, m.mark
+FROM
+    (mark m
+    JOIN student std ON m.student_id = std.student_id
+    JOIN subjects sub ON sub.sub_id = m.sub_id)
+ORDER BY mark DESC , student_name ASC;
+/*Bài 4*/
+-- Hiển thị tất cả các thông tin môn học (bảng subject) có credit lớn nhất.
+SELECT 
+    s.sub_name, MAX(credit)
+FROM
+    subjects s
+HAVING MAX(credit);
