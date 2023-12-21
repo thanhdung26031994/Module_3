@@ -1,35 +1,92 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-html{
-    scroll-behavior: smooth;
-}
 
-::-webkit-scrollbar{
-    width: 15px;
-}
-
-::-webkit-scrollbar-track{
-    border-radius: 5px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
-}
-
-::-webkit-scrollbar-thumb{
-    border-radius: 5px;
-    background: linear-gradient(to top, #c72092 , #6c14d0);
-}
-div{
-    color: white;
-}
 .menu{
-    background-color: black;
+    background-color: #1a1d20;
     width: 100%;
     height: 50px;
     display: flex;
 }
-.menu #Logo:hover{
-    color: red;
+.menu .logo{
+    font-size: 20px;
+    color: white;
+    padding: 13px;
+    position: relative;
+    display: flex;
 }
+.menu .home{
+    font-size: 20px;
+    color: white;
+    position: relative;
+    padding: 13px;
+    display: flex;
+}
+.menu .logo:hover{
+    background-color: red;
+}
+.menu .home:hover{
+    background-color: red;
+}
+.menu .icons{
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    display: flex;
+    top: 8px;
+    right: 20px;
+    padding: 10px;
+}
+.menu .icons .login{
+    margin: 0 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+    color: white;
+    position: relative;
+
+}
+.menu .icons .login:hover{
+    background-color: red;
+}
+#row{
+    display: flex;
+}
+#row .left{
+    height: 800px;
+    width: 20%;
+    background-color: #d7d2d2;
+    color: black;
+}
+#row .center{
+    height: 800px;
+    background-color: aliceblue;
+    width: 60%;
+    margin: 0 5px;
+}
+
+#row .left .link{
+    color: black;
+    font-size: 20px;
+    padding: 13px;
+    position: relative;
+    display: flex;
+    margin: 0 100px;
+}
+#row .right{
+    height: 800px;
+    background-color: #5b5555;
+    color: black;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    width: 20%;
+}
+#row .right .ads{
+    border: 2px groove rgba(169, 169, 169, 0.25);
+    border-radius: 4px;
+    padding: 20px;
+    margin:15px;
+    background-color: #eae5e5;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
