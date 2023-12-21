@@ -1,0 +1,22 @@
+.blue_color {
+    color: blue;
+}
+.dodgerblue_color{
+    color:dodgerblue;
+}
+body {
+    margin: 30px;
+    text-indent: 50px;
+    line-height: 1.8;
+    font-family: sans-serif;
+    text-align: justify;
+}
+div {
+    margin-top: 10px;
+}
+sup{
+    font-size: 70%;
+}
+a {
+    text-decoration: none;
+}

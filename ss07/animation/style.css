@@ -1,0 +1,75 @@
+/*animation-name tác dụng xác định
+thành phần sẽ thực thi animation nào.*/
+.element{
+    width: 50px;
+    height: 50px;
+    background-color: #009966;
+    position: relative;
+    margin: 0 auto;
+    animation-name: bounce;
+    animation-duration: 2s, 2s;
+    animation-iteration-count: infinite, infinite;
+}
+@-webkit-keyframes bounce {
+    from {
+        top: 150px;
+        animation-timing-function: ease-out;
+    }
+    25% {
+        top: 50px;
+        animation-timing-function: ease-in;
+    }
+    50% {
+        top: 200px;
+        animation-timing-function: ease-out;
+    }
+    75% {
+        top: 75px;
+        animation-timing-function: ease-in;
+    }
+    to {
+        top: 150px;
+    }
+}
+
+/* Hover*/
+div{
+    background-color: #999999;
+}
+div a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    display: inline-block;
+}
+ul{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    display: inline-block;
+}
+ul li:hover{
+    background: #0a53be;
+}
+ul li:hover ul{
+    display: block;
+}
+ul li ul{
+    position: absolute;
+    width: 200px;
+    display: none;
+}
+ul li ul li{
+    background: #0a53be;
+    display: block;
+}
+ul li ul li a{
+    display: block !important;
+    color: red;
+}
+ul li ul li:hover{
+    background: #666;
+}
