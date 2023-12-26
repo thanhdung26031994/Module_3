@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss09_web/currency_converter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss09_web/product_discount_calculator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss09_web/server-time" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss09_web/simple-login" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss09_web/simple_dictionary" vcs="Git" />
   </component>
 </project>
