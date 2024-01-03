@@ -75,7 +75,6 @@ public class ProductController extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     private void editProduct(HttpServletRequest req, HttpServletResponse resp) {
