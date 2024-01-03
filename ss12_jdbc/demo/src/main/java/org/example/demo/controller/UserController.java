@@ -1,7 +1,6 @@
 package org.example.demo.controller;
 
 import org.example.demo.model.User;
-import org.example.demo.repository.impl.UserRepository;
 import org.example.demo.service.IUserService;
 import org.example.demo.service.impl.UserService;
 
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/users")

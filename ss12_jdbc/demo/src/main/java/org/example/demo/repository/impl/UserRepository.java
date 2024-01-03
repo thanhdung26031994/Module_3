@@ -76,8 +76,6 @@ public class UserRepository implements IUserRepository {
             DBConnection.close();
         }
     }
-
-
     @Override
     public User getUserById(int id) {
         List<User> userList = selectAllUser();
@@ -88,7 +86,6 @@ public class UserRepository implements IUserRepository {
         }
         return null;
     }
-
     @Override
     public boolean updateUser(User user) {
         boolean rowUpdated = false;
@@ -108,7 +105,6 @@ public class UserRepository implements IUserRepository {
         }
         return rowUpdated;
     }
-
     @Override
     public boolean deleteUser(int id) {
         boolean rowDeleted = false;
@@ -147,7 +143,6 @@ public class UserRepository implements IUserRepository {
         }
         return userList;
     }
-
     @Override
     public List<User> sortByName() {
         List<User> userList = new ArrayList<>();
@@ -169,5 +164,4 @@ public class UserRepository implements IUserRepository {
         }
         return userList;
     }
-
 }

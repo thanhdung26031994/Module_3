@@ -15,7 +15,6 @@ public class User {
         this.email = email;
         this.country = country;
     }
-
     public int getId() {
         return id;
     }
