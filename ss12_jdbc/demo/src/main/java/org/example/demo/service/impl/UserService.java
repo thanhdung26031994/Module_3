@@ -40,4 +40,9 @@ public class UserService implements IUserService {
     public List<User> seleteUserByCountry(String country) {
         return userRepository.seleteUserByCountry(country);
     }
+
+    @Override
+    public List<User> sortByName() {
+        return userRepository.sortByName();
+    }
 }

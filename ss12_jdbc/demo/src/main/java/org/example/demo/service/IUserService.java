@@ -18,4 +18,6 @@ public interface IUserService {
     boolean deleteUser(int id);
 
     List<User> seleteUserByCountry(String country);
+
+    List<User> sortByName();
 }

@@ -93,10 +93,20 @@ public class UserController extends HttpServlet {
                 break;
             case "search":
                 showSearchFrom(req, resp);
+                break;
+            case "sort":
+                sortByName(req,resp);
+                break;
             default:
                 listUser(req, resp);
                 break;
         }
+    }
+
+    private void sortByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<User> userList = userService.sortByName();
+        req.setAttribute("userList", userList);
+        req.getRequestDispatcher("user/list.jsp").forward(req,resp);
     }
 
     private void showSearchFrom(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

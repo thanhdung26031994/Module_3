@@ -17,6 +17,12 @@
     <h2>
         <a href="/users?action=create">Add New User</a>
     </h2>
+    <h2>
+        <a href="/users?action=search">Search By Country</a>
+    </h2>
+    <h2>
+        <a href="/users?action=sort">Sort By Name</a>
+    </h2>
 </center>
 <center>
     <c:if test="${ms != null}">
