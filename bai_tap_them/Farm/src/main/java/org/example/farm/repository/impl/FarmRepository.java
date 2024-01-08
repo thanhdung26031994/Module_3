@@ -23,7 +23,7 @@ public class FarmRepository implements IFarmRepository {
         try {
             statement = connection.prepareStatement("select * from cage");
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 idCage = rs.getInt("id_cage");
                 typeCage = rs.getString("type_cage");
                 capacity = rs.getInt("capacity");
@@ -31,7 +31,7 @@ public class FarmRepository implements IFarmRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             try {
                 statement.close();
             } catch (SQLException e) {
@@ -47,10 +47,88 @@ public class FarmRepository implements IFarmRepository {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement("insert into cage values (?,?,?);");
-            
+            statement = connection.prepareStatement("insert into cage(id_cage, type_cage, capacity) values (?,?,?);");
+            statement.setInt(1, cage.getIdCage());
+            statement.setString(2, cage.getTypeCage());
+            statement.setInt(3, cage.getCapacity());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            DBConnection.close();
+        }
+    }
+
+    @Override
+    public void updateCage(Cage cage) {
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("update cage set type_cage = ?, capacity = ? where id_cage = ?;");
+            statement.setString(1, cage.getTypeCage());
+            statement.setInt(2, cage.getCapacity());
+            statement.setInt(3, cage.getIdCage());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public Cage findById(Integer idCage) {
+        Cage cage = null;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("select * from cage where id_cage = ?;");
+            statement.setInt(1, idCage);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Integer idCage1 = rs.getInt("idCage");
+                String typeCage = rs.getString("typeCage");
+                Integer capacity = rs.getInt("capacity");
+                cage = new Cage(idCage1, typeCage, capacity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return cage;
+    }
+
+    @Override
+    public void deleteById(Integer idCage) {
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement("delete from cage where id_cage = ?;");
+            statement.setInt(1, idCage);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

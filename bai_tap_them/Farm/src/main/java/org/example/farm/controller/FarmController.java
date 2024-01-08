@@ -23,16 +23,42 @@ public class FarmController extends HttpServlet {
             action = "";
         }
         switch (action){
+            case "create":
+                showCreatForm(req,resp);
+                break;
+            case "edit":
+                showEditForm(req,resp);
+                break;
+            case "delete":
+                deleteCageById(req,resp);
+                break;
             default:
                 listCage(req,resp);
                 break;
         }
     }
 
+    private void deleteCageById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer idCage = Integer.valueOf(req.getParameter("idCage"));
+        farmService.deleteById(idCage);
+        resp.sendRedirect("/farms");
+    }
+
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer idCage = Integer.valueOf(req.getParameter("idCage"));
+        Cage cage = farmService.findById(idCage);
+        req.setAttribute("cage", cage);
+        req.getRequestDispatcher("farms/edit.jsp").forward(req,resp);
+    }
+
+    private void showCreatForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("farms/create.jsp").forward(req,resp);
+    }
+
     private void listCage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Cage> cageList = farmService.getAllCage();
         req.setAttribute("cageList", cageList);
-        req.getRequestDispatcher("farm/list.jsp").forward(req,resp);
+        req.getRequestDispatcher("farms/list.jsp").forward(req,resp);
     }
 
     @Override
@@ -46,15 +72,27 @@ public class FarmController extends HttpServlet {
             case "create":
                 createCage(req,resp);
                 break;
+            case "edit":
+                editCage(req, resp);
+                break;
         }
     }
 
-    private void createCage(HttpServletRequest req, HttpServletResponse resp) {
-        Integer idCage = Integer.getInteger(req.getParameter("idCage"));
+    private void editCage(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer idCage = Integer.valueOf(req.getParameter("idCage"));
         String typeCage = req.getParameter("typeCage");
-        Integer capacity = Integer.getInteger(req.getParameter("capacity"));
+        Integer capacity = Integer.valueOf(req.getParameter("capacity"));
+        Cage cage = new Cage(idCage, typeCage, capacity);
+        farmService.updateCage(cage);
+        resp.sendRedirect("/farms");
+    }
 
+    private void createCage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer idCage = Integer.valueOf(req.getParameter("idCage"));
+        String typeCage = req.getParameter("typeCage");
+        Integer capacity = Integer.valueOf(req.getParameter("capacity"));
         Cage cage = new Cage(idCage, typeCage, capacity);
         farmService.addCage(cage);
+        resp.sendRedirect("/farms");
     }
 }

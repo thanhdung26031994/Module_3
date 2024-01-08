@@ -1,9 +1,9 @@
 package org.example.farm.model;
 
 public class Cage {
-    private Integer idCage;
+    private int idCage;
     private String typeCage;
-    private Integer capacity;
+    private int capacity;
 
     public Cage() {
     }

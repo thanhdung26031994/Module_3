@@ -19,4 +19,19 @@ public class FarmService implements IFarmService {
     public void addCage(Cage cage) {
         farmRepository.addCage(cage);
     }
+
+    @Override
+    public void updateCage(Cage cage) {
+        farmRepository.updateCage(cage);
+    }
+
+    @Override
+    public Cage findById(Integer idCage) {
+        return farmRepository.findById(idCage);
+    }
+
+    @Override
+    public void deleteById(Integer idCage) {
+        farmRepository.deleteById(idCage);
+    }
 }
